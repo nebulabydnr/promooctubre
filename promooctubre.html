@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nebula Ads — Campaña Meta Ads + Landing Page</title>
+<meta name="description" content="Campaña de Meta Ads + Landing page optimizada para conversión. Proyecto completo en 48 horas. Promo primer mes $99.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --violet:#700093;
+    --violet-light:#9b2fd1;
+    --violet-soft:#f4e9fa;
+    --violet-soft-2:#faf5fd;
+    --black:#0d0812;
+    --text:#2a1a35;
+    --muted:#6b5a78;
+    --white:#ffffff;
+    --radius:18px;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+
+  body{
+    font-family:'Montserrat',sans-serif;
+    background:var(--white);
+    color:var(--text);
+    line-height:1.6;
+    overflow-x:hidden;
+    position:relative;
+  }
+
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:
+      radial-gradient(circle at 12% 15%, rgba(112,0,147,.10), transparent 42%),
+      radial-gradient(circle at 88% 80%, rgba(155,47,209,.09), transparent 45%),
+      radial-gradient(circle at 50% 110%, rgba(112,0,147,.07), transparent 50%);
+    z-index:-2;
+    animation:bgShift 20s ease-in-out infinite alternate;
+  }
+
+  @keyframes bgShift{
+    0%{transform:scale(1) translateY(0);}
+    100%{transform:scale(1.12) translateY(-18px);}
+  }
+
+  .container{
+    max-width:1060px;
+    margin:0 auto;
+    padding:0 24px;
+  }
+
+  /* HEADER */
+  header{
+    padding:26px 0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    animation:fadeDown .8s ease both;
+  }
+
+  .logo{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700;
+    font-size:1.5rem;
+    letter-spacing:-.5px;
+    color:var(--violet);
+  }
+
+  .logo span{
+    background:linear-gradient(120deg,var(--violet) 0%, var(--violet-light) 100%);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+
+  /* HERO */
+  .hero{
+    padding:36px 0 60px;
+    text-align:center;
+  }
+
+  .badge{
+    display:inline-block;
+    font-family:'Space Grotesk',sans-serif;
+    font-size:.78rem;
+    font-weight:600;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    color:var(--violet);
+    padding:8px 18px;
+    border-radius:100px;
+    background:var(--violet-soft);
+    border:1px solid rgba(112,0,147,.25);
+    margin-bottom:26px;
+    animation:fadeUp .8s ease both .1s;
+  }
+
+  h1{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700;
+    font-size:clamp(2.2rem, 6vw, 3.7rem);
+    line-height:1.05;
+    letter-spacing:-1.5px;
+    margin-bottom:22px;
+    color:var(--text);
+    animation:fadeUp .8s ease both .2s;
+  }
+
+  h1 .accent{
+    background:linear-gradient(120deg,var(--violet) 0%, var(--violet-light) 50%, var(--violet) 100%);
+    background-size:200% auto;
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    animation:shine 4s linear infinite;
+  }
+
+  @keyframes shine{to{background-position:200% center;}}
+
+  .subtitle{
+    font-size:clamp(1rem, 2.5vw, 1.15rem);
+    color:var(--muted);
+    max-width:660px;
+    margin:0 auto 36px;
+    animation:fadeUp .8s ease both .3s;
+  }
+
+  /* PRECIO */
+  .price-card{
+    display:inline-flex;
+    flex-direction:column;
+    align-items:center;
+    gap:6px;
+    padding:32px 54px;
+    border-radius:var(--radius);
+    background:linear-gradient(160deg, #ffffff 0%, var(--violet-soft) 100%);
+    border:1px solid rgba(112,0,147,.22);
+    box-shadow:0 24px 60px -28px rgba(112,0,147,.45);
+    margin-bottom:32px;
+    animation:fadeUp .8s ease both .4s, floatCard 6s ease-in-out infinite 1.4s;
+    position:relative;
+    overflow:hidden;
+  }
+
+  .price-card::before{
+    content:"";
+    position:absolute;
+    top:-50%;left:-50%;
+    width:200%;height:200%;
+    background:conic-gradient(from 0deg, transparent, rgba(155,47,209,.10), transparent 30%);
+    animation:rotate 8s linear infinite;
+    pointer-events:none;
+  }
+
+  @keyframes rotate{to{transform:rotate(360deg);}}
+
+  .price-old{
+    font-size:1rem;
+    color:var(--muted);
+    text-decoration:line-through;
+    text-decoration-color:rgba(112,0,147,.55);
+    position:relative;
+    z-index:1;
+  }
+
+  .price-new{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:clamp(3rem, 9vw, 4.6rem);
+    font-weight:700;
+    line-height:1;
+    background:linear-gradient(120deg,var(--violet), var(--violet-light));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    position:relative;
+    z-index:1;
+  }
+
+  .price-tag{
+    font-size:.82rem;
+    color:var(--violet);
+    letter-spacing:.5px;
+    font-weight:500;
+    position:relative;
+    z-index:1;
+  }
+
+  /* CTA */
+  .cta{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:600;
+    font-size:1.05rem;
+    color:#fff;
+    text-decoration:none;
+    padding:18px 42px;
+    border-radius:100px;
+    background:linear-gradient(120deg, var(--violet) 0%, var(--violet-light) 50%, var(--violet) 100%);
+    background-size:200% auto;
+    box-shadow:0 14px 38px -10px rgba(112,0,147,.7);
+    transition:transform .3s ease, box-shadow .3s ease, background-position .6s ease;
+    animation:fadeUp .8s ease both .5s, pulse 2.6s ease-in-out infinite 1.5s;
+    position:relative;
+    z-index:1;
+  }
+
+  .cta:hover{
+    transform:translateY(-3px) scale(1.03);
+    background-position:right center;
+    box-shadow:0 20px 48px -10px rgba(112,0,147,.85);
+  }
+
+  .cta svg{width:20px;height:20px;transition:transform .3s ease;}
+  .cta:hover svg{transform:translateX(4px) rotate(6deg);}
+
+  @keyframes pulse{
+    0%,100%{box-shadow:0 14px 38px -10px rgba(112,0,147,.7);}
+    50%{box-shadow:0 14px 52px -6px rgba(155,47,209,.85);}
+  }
+
+  .cta-note{
+    margin-top:14px;
+    font-size:.82rem;
+    color:var(--muted);
+    animation:fadeUp .8s ease both .6s;
+  }
+
+  /* SECCIONES */
+  section{padding:56px 0;}
+
+  .section-title{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:clamp(1.6rem, 4vw, 2.2rem);
+    font-weight:700;
+    letter-spacing:-.8px;
+    text-align:center;
+    margin-bottom:12px;
+    color:var(--text);
+  }
+
+  .section-title .accent{
+    background:linear-gradient(120deg,var(--violet), var(--violet-light));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+
+  .section-sub{
+    text-align:center;
+    color:var(--muted);
+    max-width:620px;
+    margin:0 auto 40px;
+    font-size:.98rem;
+  }
+
+  /* FEATURES */
+  .features{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+    gap:20px;
+  }
+
+  .feature{
+    padding:28px 24px;
+    border-radius:var(--radius);
+    background:#ffffff;
+    border:1px solid rgba(112,0,147,.14);
+    box-shadow:0 10px 30px -22px rgba(112,0,147,.5);
+    transition:transform .35s ease, border-color .35s ease, box-shadow .35s ease;
+  }
+
+  .feature:hover{
+    transform:translateY(-6px);
+    border-color:rgba(112,0,147,.4);
+    box-shadow:0 24px 50px -26px rgba(112,0,147,.6);
+  }
+
+  .feature-icon{
+    width:44px;height:44px;
+    display:flex;align-items:center;justify-content:center;
+    border-radius:12px;
+    background:linear-gradient(135deg, var(--violet-soft), #ffffff);
+    border:1px solid rgba(112,0,147,.28);
+    margin-bottom:16px;
+    color:var(--violet);
+  }
+
+  .feature-icon svg{width:22px;height:22px;}
+
+  .feature h3{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:1.05rem;
+    font-weight:600;
+    margin-bottom:8px;
+    color:var(--violet);
+  }
+
+  .feature p{font-size:.9rem;color:var(--muted);}
+
+  /* QUÉ INCLUYE */
+  .includes{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+    gap:22px;
+  }
+
+  .includes-card{
+    padding:32px 28px;
+    border-radius:var(--radius);
+    background:linear-gradient(160deg, #ffffff 0%, var(--violet-soft-2) 100%);
+    border:1px solid rgba(112,0,147,.18);
+    box-shadow:0 14px 40px -28px rgba(112,0,147,.5);
+    transition:transform .35s ease, box-shadow .35s ease;
+  }
+
+  .includes-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 24px 55px -28px rgba(112,0,147,.6);
+  }
+
+  .includes-card h3{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:1.15rem;
+    font-weight:700;
+    color:var(--violet);
+    margin-bottom:6px;
+    letter-spacing:-.3px;
+  }
+
+  .includes-card .tag{
+    display:inline-block;
+    font-size:.72rem;
+    font-weight:600;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    color:var(--violet);
+    background:var(--violet-soft);
+    padding:4px 12px;
+    border-radius:100px;
+    margin-bottom:18px;
+  }
+
+  .includes-card ul{
+    list-style:none;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+
+  .includes-card li{
+    font-size:.9rem;
+    color:var(--text);
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    line-height:1.45;
+  }
+
+  .includes-card li svg{
+    flex-shrink:0;
+    width:16px;height:16px;
+    margin-top:4px;
+    color:var(--violet);
+  }
+
+  /* PROCESO */
+  .steps{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
+    gap:20px;
+    position:relative;
+  }
+
+  .step{
+    text-align:center;
+    padding:24px 16px;
+  }
+
+  .step-num{
+    width:52px;height:52px;
+    margin:0 auto 16px;
+    display:flex;align-items:center;justify-content:center;
+    border-radius:50%;
+    background:linear-gradient(135deg, var(--violet), var(--violet-light));
+    color:#fff;
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700;
+    font-size:1.2rem;
+    box-shadow:0 10px 25px -8px rgba(112,0,147,.7);
+    transition:transform .35s ease;
+  }
+
+  .step:hover .step-num{transform:scale(1.1) rotate(-4deg);}
+
+  .step h3{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:1rem;
+    font-weight:600;
+    color:var(--violet);
+    margin-bottom:6px;
+  }
+
+  .step p{font-size:.85rem;color:var(--muted);}
+
+  /* ENTREGA */
+  .delivery{
+    text-align:center;
+    padding:40px 32px;
+    border-radius:var(--radius);
+    background:linear-gradient(135deg, var(--violet-soft-2), var(--violet-soft));
+    border:1px solid rgba(112,0,147,.2);
+    position:relative;
+    overflow:hidden;
+  }
+
+  .delivery::before{
+    content:"";
+    position:absolute;
+    top:0;left:-100%;
+    width:100%;height:100%;
+    background:linear-gradient(90deg, transparent, rgba(155,47,209,.14), transparent);
+    animation:sweep 3.5s ease-in-out infinite;
+  }
+
+  @keyframes sweep{
+    0%{left:-100%;}
+    60%,100%{left:100%;}
+  }
+
+  .delivery h2{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:clamp(1.4rem, 3.5vw, 1.9rem);
+    font-weight:700;
+    letter-spacing:-.5px;
+    margin-bottom:10px;
+    color:var(--violet);
+    position:relative;
+  }
+
+  .delivery p{
+    color:var(--muted);
+    font-size:.98rem;
+    max-width:560px;
+    margin:0 auto;
+    position:relative;
+  }
+
+  /* GARANTÍAS */
+  .trust{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
+    gap:18px;
+    margin-top:10px;
+  }
+
+  .trust-item{
+    padding:20px;
+    border-radius:14px;
+    background:#fff;
+    border:1px solid rgba(112,0,147,.14);
+    text-align:center;
+    transition:transform .3s ease;
+  }
+
+  .trust-item:hover{transform:translateY(-4px);}
+
+  .trust-item .icon{
+    width:36px;height:36px;
+    margin:0 auto 10px;
+    display:flex;align-items:center;justify-content:center;
+    color:var(--violet);
+  }
+
+  .trust-item .icon svg{width:24px;height:24px;}
+
+  .trust-item p{
+    font-size:.85rem;
+    color:var(--muted);
+    line-height:1.5;
+  }
+
+  .trust-item strong{
+    display:block;
+    font-family:'Space Grotesk',sans-serif;
+    color:var(--violet);
+    font-size:.92rem;
+    font-weight:600;
+    margin-bottom:4px;
+  }
+
+  /* CTA FINAL */
+  .final-cta{
+    text-align:center;
+    padding:60px 24px;
+  }
+
+  .final-cta h2{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:clamp(1.6rem, 4vw, 2.2rem);
+    font-weight:700;
+    letter-spacing:-.8px;
+    margin-bottom:14px;
+    color:var(--text);
+  }
+
+  .final-cta h2 .accent{
+    background:linear-gradient(120deg,var(--violet), var(--violet-light));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+
+  .final-cta p{
+    color:var(--muted);
+    max-width:520px;
+    margin:0 auto 30px;
+    font-size:.98rem;
+  }
+
+  /* FOOTER */
+  footer{
+    background:var(--black);
+    padding:40px 0 46px;
+    text-align:center;
+    font-size:.82rem;
+    color:#b8a8c4;
+  }
+
+  footer .logo{
+    font-size:1.15rem;
+    margin-bottom:14px;
+    display:inline-block;
+    color:#ffffff;
+  }
+
+  footer .logo span{
+    background:linear-gradient(120deg,var(--violet-light), #c77dff);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+
+  footer a{
+    color:#c77dff;
+    text-decoration:none;
+    border-bottom:1px solid transparent;
+    transition:border-color .3s ease, color .3s ease;
+  }
+
+  footer a:hover{
+    color:#e9c6ff;
+    border-bottom-color:#e9c6ff;
+  }
+
+  .footer-contact{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:8px 20px;
+    margin:14px 0 6px;
+    font-size:.82rem;
+  }
+
+  .footer-note{
+    margin-top:18px;
+    font-size:.72rem;
+    color:rgba(184,168,196,.7);
+    max-width:560px;
+    margin-left:auto;
+    margin-right:auto;
+    line-height:1.5;
+  }
+
+  /* ANIMACIONES */
+  @keyframes fadeUp{
+    from{opacity:0;transform:translateY(24px);}
+    to{opacity:1;transform:translateY(0);}
+  }
+
+  @keyframes fadeDown{
+    from{opacity:0;transform:translateY(-16px);}
+    to{opacity:1;transform:translateY(0);}
+  }
+
+  @keyframes floatCard{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-8px);}
+  }
+
+  /* RESPONSIVE */
+  @media(max-width:600px){
+    .price-card{padding:26px 34px;}
+    .cta{width:100%;padding:17px 26px;font-size:1rem;}
+    section{padding:44px 0;}
+    .delivery{padding:32px 22px;}
+  }
+
+  @media(prefers-reduced-motion: reduce){
+    *{animation:none !important;transition:none !important;}
+  }
+    /* CUENTA ATRÁS */
+  .countdown{
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    margin-bottom:26px;
+    animation:fadeUp .8s ease both .15s;
+  }
+
+  .countdown-item{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    min-width:72px;
+    padding:12px 10px;
+    border-radius:14px;
+    background:linear-gradient(160deg, #ffffff, var(--violet-soft));
+    border:1px solid rgba(112,0,147,.22);
+    box-shadow:0 14px 32px -22px rgba(112,0,147,.6);
+    position:relative;
+    overflow:hidden;
+  }
+
+  .countdown-item::before{
+    content:"";
+    position:absolute;
+    top:0;left:0;right:0;height:3px;
+    background:linear-gradient(90deg, var(--violet), var(--violet-light));
+  }
+
+  .countdown-num{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700;
+    font-size:1.6rem;
+    line-height:1;
+    color:var(--violet);
+    letter-spacing:-.5px;
+    font-variant-numeric:tabular-nums;
+  }
+
+  .countdown-label{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:.62rem;
+    font-weight:600;
+    letter-spacing:1.2px;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin-top:6px;
+  }
+
+  .countdown-text{
+    text-align:center;
+    font-size:.82rem;
+    color:var(--muted);
+    margin-bottom:14px;
+    animation:fadeUp .8s ease both .12s;
+  }
+
+  .countdown-text strong{color:var(--violet);}
+
+  /* Estado: promo expirada */
+  .countdown.expired{
+    flex-direction:column;
+    align-items:center;
+  }
+
+  .countdown.expired .countdown-item{display:none;}
+
+  .countdown.expired::after{
+    content:"⏳ Promoción finalizada";
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:600;
+    font-size:1.05rem;
+    color:var(--violet);
+    padding:14px 26px;
+    border-radius:100px;
+    background:var(--violet-soft);
+    border:1px solid rgba(112,0,147,.25);
+  }
+
+  @media(max-width:520px){
+    .countdown{gap:8px;}
+    .countdown-item{min-width:60px;padding:10px 8px;}
+    .countdown-num{font-size:1.25rem;}
+    .countdown-label{font-size:.55rem;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <div class="logo">Nebula <span>Ads</span></div>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+          <div class="badge">Promoción de lanzamiento</div>
+
+      <p class="countdown-text">
+        La oferta termina el <strong>31 de octubre</strong>
+      </p>
+
+      <div class="countdown" id="countdown" aria-live="polite">
+        <div class="countdown-item">
+          <span class="countdown-num" id="cd-days">00</span>
+          <span class="countdown-label">Días</span>
+        </div>
+        <div class="countdown-item">
+          <span class="countdown-num" id="cd-hours">00</span>
+          <span class="countdown-label">Horas</span>
+        </div>
+        <div class="countdown-item">
+          <span class="countdown-num" id="cd-min">00</span>
+          <span class="countdown-label">Min</span>
+        </div>
+        <div class="countdown-item">
+          <span class="countdown-num" id="cd-sec">00</span>
+          <span class="countdown-label">Seg</span>
+        </div>
+      </div>
+
+      <h1>
+        Tu negocio visible<br>
+        en <span class="accent">48 horas</span>
+      </h1>
+
+      <p class="subtitle">
+        Campaña de Meta Ads (Facebook e Instagram) + Landing page optimizada para conversión.
+        Todo lo que necesitas para empezar a atraer clientes, en un solo paquete.
+      </p>
+
+      <div class="price-card">
+        <span class="price-old">$124.98</span>
+        <span class="price-new">$99</span>
+        <span class="price-tag">primer mes · todo incluido</span>
+      </div>
+
+      <div>
+        <a class="cta" href="https://wa.me/584241536261?text=Hola%20Nebula%20Ads%2C%20quiero%20aprovechar%20la%20promo%20de%20%2499%20del%20primer%20mes%20(Campa%C3%B1a%20Meta%20Ads%20%2B%20Landing%20Page)." target="_blank" rel="noopener">
+          Quiero mi paquete
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+        <p class="cta-note">Respuesta inmediata por WhatsApp</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUÉ INCLUYE -->
+  <section>
+    <div class="container">
+      <h2 class="section-title">Qué incluye tu <span class="accent">paquete</span></h2>
+      <p class="section-sub">Dos servicios pensados para trabajar juntos: la campaña que atrae y la página que convierte.</p>
+
+      <div class="includes">
+        <div class="includes-card">
+          <h3>Campaña Meta Ads</h3>
+          <span class="tag">Plan Básico 30 días</span>
+          <ul>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Consultoría presencial u online
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Configuración base del anuncio
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Diseño básico incluido (imagen, carrusel o video)
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Reporte de 24h + reportes semanales
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Notificaciones previas al vencimiento
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Reporte final vía email + reporte interactivo
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Sesión de análisis de 60 minutos
+            </li>
+          </ul>
+        </div>
+
+        <div class="includes-card">
+          <h3>Landing Page</h3>
+          <span class="tag">Diseño a medida</span>
+          <ul>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Diseño personalizado en HTML, CSS y JavaScript
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Enfocada 100% en conversión
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Optimizada para móviles
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Integración directa con WhatsApp
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Carga rápida y diseño moderno
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Lista para conectar con tu campaña
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFICIOS -->
+  <section>
+    <div class="container">
+      <h2 class="section-title">Por qué <span class="accent">funciona</span></h2>
+      <p class="section-sub">Un ecosistema completo: los anuncios llevan tráfico y la landing lo convierte en contactos reales.</p>
+
+      <div class="features">
+        <div class="feature">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 11l18-5v12L3 14v-3z"></path>
+              <path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"></path>
+            </svg>
+          </div>
+          <h3>Alcance diario</h3>
+          <p>Campaña orientada a atraer tu público objetivo en Facebook e Instagram desde el primer día.</p>
+        </div>
+
+        <div class="feature">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+              <path d="M3 9h18"></path>
+              <path d="M9 21V9"></path>
+            </svg>
+          </div>
+          <h3>Página que convierte</h3>
+          <p>Diseñada con estructura de ventas: mensaje claro, propuesta de valor y CTA directo a WhatsApp.</p>
+        </div>
+
+        <div class="feature">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="9"></circle>
+              <polyline points="12 7 12 12 15 14"></polyline>
+            </svg>
+          </div>
+          <h3>Entrega en 48h</h3>
+          <p>Tu proyecto completo, listo para empezar a generar resultados en tiempo récord.</p>
+        </div>
+
+        <div class="feature">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            </svg>
+          </div>
+          <h3>Reportes y soporte</h3>
+          <p>Seguimiento semanal, notificaciones y consultoría durante toda la campaña.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESO -->
+  <section>
+    <div class="container">
+      <h2 class="section-title">Cómo <span class="accent">trabajamos</span></h2>
+      <p class="section-sub">Un proceso simple y transparente, de principio a fin.</p>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h3>Consultoría</h3>
+          <p>Escuchamos tu negocio, objetivos y público para definir la mejor estrategia.</p>
+        </div>
+
+        <div class="step">
+          <div class="step-num">2</div>
+          <h3>Diseño y config.</h3>
+          <p>Creamos tu landing page y configuramos la campaña en Meta Ads.</p>
+        </div>
+
+        <div class="step">
+          <div class="step-num">3</div>
+          <h3>Publicación</h3>
+          <p>En 48 horas ambos servicios están en marcha y generando tráfico.</p>
+        </div>
+
+        <div class="step">
+          <div class="step-num">4</div>
+          <h3>Seguimiento</h3>
+          <p>Reportes semanales, análisis y ajustes para mejorar el rendimiento.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENTREGA -->
+  <section>
+    <div class="container">
+      <div class="delivery">
+        <h2>Proyecto completo en <span class="accent">48 horas</span></h2>
+        <p>Configuramos tu campaña y publicamos tu landing page en tiempo récord, para que empieces a captar clientes cuanto antes.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- GARANTÍAS -->
+  <section>
+    <div class="container">
+      <h2 class="section-title">Confianza <span class="accent">Nebula</span></h2>
+      <p class="section-sub">Trabajamos con procesos claros y acompañamiento real.</p>
+
+      <div class="trust">
+        <div class="trust-item">
+          <div class="icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+          </div>
+          <strong>Pago por adelantado</strong>
+          <p>Aceptamos múltiples métodos, incluido pago en bolívares.</p>
+        </div>
+
+        <div class="trust-item">
+          <div class="icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+          </div>
+          <strong>Asesoría en Caracas</strong>
+          <p>Consultoría previa presencial sin costo si estás en la ciudad.</p>
+        </div>
+
+        <div class="trust-item">
+          <div class="icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+          </div>
+          <strong>Respuesta rápida</strong>
+          <p>Atención directa por WhatsApp para resolver tus dudas.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="final-cta">
+    <div class="container">
+      <h2>Empieza hoy, <span class="accent">en 48h está listo</span></h2>
+      <p>Aprovecha el precio de lanzamiento y da el primer paso para hacer visible tu negocio.</p>
+
+      <a class="cta" href="https://wa.me/584241536261?text=Hola%20Nebula%20Ads%2C%20quiero%20aprovechar%20la%20promo%20de%20%2499%20del%20primer%20mes%20(Campa%C3%B1a%20Meta%20Ads%20%2B%20Landing%20Page)." target="_blank" rel="noopener">
+        Hablar por WhatsApp
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
+      <p class="cta-note">Respuesta inmediata · Sin compromiso</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="logo">Nebula <span>Ads</span></div>
+
+    <div class="footer-contact">
+      <span>+58 424 153 6261</span>
+      <span>nebula@dnrconsultor.com</span>
+    </div>
+
+    <p>Chacao, Miranda, Venezuela</p>
+
+    <p style="margin-top:12px;">
+      <a href="https://nebula.dnrconsultor.com/p/contacto.html" target="_blank" rel="noopener">
+        Contáctanos
+      </a>
+    </p>
+
+    <p class="footer-note">
+      Promoción válida por tiempo limitado. El precio de $99 corresponde al primer mes del paquete (campaña + landing page). Servicio mensual de continuidad disponible al finalizar el primer mes. El alcance estimado puede variar según producto, zona y objetivo.
+    </p>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    // Fecha límite: 31 de octubre a las 23:59:59 (hora local del visitante)
+    const year = new Date().getFullYear();
+    let deadline = new Date(year, 9, 31, 23, 59, 59); // mes 9 = octubre
+
+    // Si ya pasó el 31 de octubre de este año, apuntamos al próximo año
+    if (new Date() > deadline) {
+      deadline = new Date(year + 1, 9, 31, 23, 59, 59);
+    }
+
+    const el = document.getElementById('countdown');
+    const dEl = document.getElementById('cd-days');
+    const hEl = document.getElementById('cd-hours');
+    const mEl = document.getElementById('cd-min');
+    const sEl = document.getElementById('cd-sec');
+
+    const pad = (n) => String(n).padStart(2, '0');
+
+    function tick() {
+      const now = new Date().getTime();
+      const diff = deadline.getTime() - now;
+
+      if (diff <= 0) {
+        el.classList.add('expired');
+        clearInterval(timer);
+        return;
+      }
+
+      const days  = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const mins  = Math.floor((diff / (1000 * 60)) % 60);
+      const secs  = Math.floor((diff / 1000) % 60);
+
+      dEl.textContent = pad(days);
+      hEl.textContent = pad(hours);
+      mEl.textContent = pad(mins);
+      sEl.textContent = pad(secs);
+    }
+
+    tick();
+    const timer = setInterval(tick, 1000);
+  })();
+</script>
+
+</body>
+</html>
